@@ -30,4 +30,16 @@ public class CandidateService {
         else
             System.out.println(">>> Повторные выборы не требуются.");
     }
+    public static void sortByVotesDesc() {
+        Candidate[] arr = Candidate.getCandidates();
+        for (int i = 0; i < arr.length - 1; i++)
+            for (int j = 0; j < arr.length - 1 - i; j++)
+                if (arr[j].getVotes() < arr[j + 1].getVotes()) {
+                    Candidate rab = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = rab;
+                }
+        System.out.println("\nОтсортированный список по убыванию голосов:");
+        for (Candidate c : arr) System.out.println(c);
+    }
 }

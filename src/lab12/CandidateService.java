@@ -1,37 +1,56 @@
 package lab12;
 import java.util.Scanner;
+
 public class CandidateService {
+    private static Candidate[] candidates;
+    private static int totalVoters;
+
+    static {
+        candidates = new Candidate[] {
+                new Candidate("Иванов И.И.", "12.05.1980", 120),
+                new Candidate("Петров П.П.", "23.08.1975", 95),
+                new Candidate("Сидоров С.С.", "01.01.1990", 60)
+        };
+        totalVoters = 300;
+    }
+
+    public static int getTotalVoters() { return totalVoters; }
+
+    public static void setTotalVoters(int value) {
+        if (value <= 0) System.out.println("Недопустимое значение !");
+        else totalVoters = value;
+    }
     public static void printCandidates() {
         System.out.println("\nХарактеристики кандидатов:");
-        for (Candidate c : Candidate.getCandidates()) System.out.println(c);
+        for (Candidate c : candidates) System.out.println(c);
     }
     public static void checkViolations() {
         int sumVotes = 0;
-        for (Candidate c : Candidate.getCandidates()) sumVotes += c.getVotes();
+        for (Candidate c : candidates) sumVotes += c.getVotes();
         System.out.println("\nСумма голосов всех кандидатов = " + sumVotes);
-        System.out.println("Общее количество избирателей = " + Candidate.getTotalVoters());
-        if (sumVotes > Candidate.getTotalVoters())
+        System.out.println("Общее количество избирателей = " + totalVoters);
+        if (sumVotes > totalVoters)
             System.out.println(">>> Обнаружены нарушения в ходе выборов !");
         else
             System.out.println(">>> Нарушений не выявлено.");
     }
     public static void checkRepeatElection() {
-        double threshold = Candidate.getTotalVoters() / 3.0;
+        double threshold = totalVoters / 3.0;
         boolean hasLeader = false;
-        for (Candidate c : Candidate.getCandidates()) {
+        for (Candidate c : candidates) {
             if (c.getVotes() > threshold) {
                 hasLeader = true;
                 break;
             }
         }
-        System.out.println("\nПорог для победы (1/3 от " + Candidate.getTotalVoters() + ") = " + threshold);
+        System.out.println("\nПорог для победы (1/3 от " + totalVoters + ") = " + threshold);
         if (!hasLeader)
             System.out.println(">>> Требуется проведение повторных выборов !");
         else
             System.out.println(">>> Повторные выборы не требуются.");
     }
     public static void sortByVotesDesc() {
-        Candidate[] arr = Candidate.getCandidates();
+        Candidate[] arr = candidates;
         for (int i = 0; i < arr.length - 1; i++)
             for (int j = 0; j < arr.length - 1 - i; j++)
                 if (arr[j].getVotes() < arr[j + 1].getVotes()) {
@@ -45,7 +64,7 @@ public class CandidateService {
     public static void fillCandidates() {
         Scanner sc = new Scanner(System.in, "cp1251");
         System.out.println("Введите общее количество избирателей=> ");
-        Candidate.setTotalVoters(sc.nextInt());
+        setTotalVoters(sc.nextInt());
         System.out.println("Введите количество кандидатов=> ");
         int n = sc.nextInt();
         Candidate[] arr = new Candidate[n];
@@ -54,6 +73,6 @@ public class CandidateService {
             System.out.println("Кандидат " + (i + 1) + "=>");
             arr[i] = new Candidate();
         }
-        Candidate.setCandidates(arr);
+        candidates = arr;
     }
 }

@@ -14,11 +14,11 @@ public class Main {
             System.out.println("Выберете пункт меню (1..6)");
             int c = (new Scanner(System.in)).nextInt();
             switch (c) {
-                case 1: Candidate.fillCandidates(); break;
-                case 2: Candidate.printCandidates(); break;
-                case 3: Candidate.checkViolations(); break;
-                case 4: Candidate.checkRepeatElection(); break;
-                case 5: Candidate.sortByVotesDesc(); break;
+                case 1: CandidateService.fillCandidates(); break;
+                case 2: CandidateService.printCandidates(); break;
+                case 3: CandidateService.checkViolations(); break;
+                case 4: CandidateService.checkRepeatElection(); break;
+                case 5: CandidateService.sortByVotesDesc(); break;
                 default: break cycle;
             }
         }

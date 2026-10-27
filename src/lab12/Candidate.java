@@ -88,4 +88,16 @@ public class Candidate {
             System.out.println(candidates[i]);
         }
     }
+    public static void checkViolations() {
+        int sumVotes = 0;
+        for (int i = 0; i < candidates.length; i++) {
+            sumVotes += candidates[i].getVotes();
+        }
+        System.out.println("\nСумма голосов всех кандидатов = " + sumVotes);
+        System.out.println("Общее количество избирателей = " + totalVoters);
+        if (sumVotes > totalVoters)
+            System.out.println(">>> Обнаружены нарушения в ходе выборов !");
+        else
+            System.out.println(">>> Нарушений не выявлено.");
+    }
 }

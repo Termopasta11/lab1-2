@@ -75,4 +75,14 @@ public class CandidateService {
         }
         candidates = arr;
     }
+    public static Candidate searchBySurname(String surname) {
+        System.out.println("Поиск кандидата: " + surname);
+        for (int i = 0; i < candidates.length; i++) {
+            if (candidates[i].getSurname().equals(surname)) {
+                return candidates[i];
+            }
+        }
+        return null;
+    }
+
 }

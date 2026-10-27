@@ -67,6 +67,8 @@ public class Candidate {
         if (totalVoters <= 0) System.out.println("Недопустимое значение !");
         else Candidate.totalVoters = totalVoters;
     }
+    public static Candidate[] getCandidates() { return candidates; }
+    public static void setCandidates(Candidate[] c) { candidates = c; }
 
     public static void fillCandidates() {
         Scanner sc = new Scanner(System.in, "cp1251");
@@ -83,10 +85,7 @@ public class Candidate {
     }
 
     public static void printCandidates() {
-        System.out.println("\nХарактеристики кандидатов:");
-        for (int i = 0; i < candidates.length; i++) {
-            System.out.println(candidates[i]);
-        }
+        CandidateService.printCandidates();
     }
     public static void checkViolations() {
         int sumVotes = 0;

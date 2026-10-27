@@ -15,4 +15,19 @@ public class CandidateService {
         else
             System.out.println(">>> Нарушений не выявлено.");
     }
+    public static void checkRepeatElection() {
+        double threshold = Candidate.getTotalVoters() / 3.0;
+        boolean hasLeader = false;
+        for (Candidate c : Candidate.getCandidates()) {
+            if (c.getVotes() > threshold) {
+                hasLeader = true;
+                break;
+            }
+        }
+        System.out.println("\nПорог для победы (1/3 от " + Candidate.getTotalVoters() + ") = " + threshold);
+        if (!hasLeader)
+            System.out.println(">>> Требуется проведение повторных выборов !");
+        else
+            System.out.println(">>> Повторные выборы не требуются.");
+    }
 }

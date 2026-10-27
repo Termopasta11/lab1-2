@@ -2,15 +2,15 @@ package lab12;
 
 import java.util.Scanner;
 
-public class Candidate { // поля класса
-    private String surname; // фамилия кандидата
-    private String birthDate; // дата рождения
-    private int votes; // количество набранных голосов
+public class Candidate {
+    private String surname;
+    private String birthDate;
+    private int votes;
 
-    private static Candidate[] candidates; // массив кандидатов
-    private static int totalVoters; // общее количество избирателей
+    private static Candidate[] candidates;
+    private static int totalVoters;
 
-    static { // статический блок инициализации
+    static {
         candidates = new Candidate[] {
                 new Candidate("Иванов И.И.", "12.05.1980", 120),
                 new Candidate("Петров П.П.", "23.08.1975", 95),
@@ -19,7 +19,6 @@ public class Candidate { // поля класса
         totalVoters = 300;
     }
 
-    // конструкторы
     public Candidate(String surname, String birthDate, int votes) {
         this.surname = surname;
         this.birthDate = birthDate;
@@ -36,46 +35,33 @@ public class Candidate { // поля класса
         this.setVotes(sc.nextInt());
     }
 
-    // метод toString
     public String toString() {
         return String.format(" Кандидат: %s ==> дата рождения: %s \t голосов = %d ",
                 surname, birthDate, votes);
     }
 
-    // геттеры и сеттеры для всех полей
-    public String getSurname() {
-        return this.surname;
-    }
+    public String getSurname() { return this.surname; }
 
     public void setSurname(String value) {
-        /* в сеттерах обязательно сделать проверку на допустимость
-           записываемого значения! */
-        if (value.isEmpty())
-            System.out.println("Недопустимое значение !");
+        if (value.isEmpty()) System.out.println("Недопустимое значение !");
         else this.surname = value;
     }
 
-    public String getBirthDate() {
-        return birthDate;
-    }
+    public String getBirthDate() { return birthDate; }
 
     public void setBirthDate(String birthDate) {
         if (birthDate.isEmpty()) System.out.println("Недопустимое значение !");
         else this.birthDate = birthDate;
     }
 
-    public int getVotes() {
-        return votes;
-    }
+    public int getVotes() { return votes; }
 
     public void setVotes(int votes) {
         if (votes < 0) System.out.println("Недопустимое значение !");
         else this.votes = votes;
     }
 
-    public static int getTotalVoters() {
-        return totalVoters;
-    }
+    public static int getTotalVoters() { return totalVoters; }
 
     public static void setTotalVoters(int totalVoters) {
         if (totalVoters <= 0) System.out.println("Недопустимое значение !");
@@ -83,12 +69,11 @@ public class Candidate { // поля класса
     }
 
     public static void fillCandidates() {
-        // ВВОД ИНФОРМАЦИИ О КАНДИДАТАХ
         Scanner sc = new Scanner(System.in, "cp1251");
         System.out.println("Введите общее количество избирателей=> ");
         totalVoters = sc.nextInt();
         System.out.println("Введите количество кандидатов=> ");
-        int n = sc.nextInt(); // количество кандидатов
+        int n = sc.nextInt();
         candidates = new Candidate[n];
         System.out.println("Введите информацию о кандидатах: ");
         for (int i = 0; i < candidates.length; i++) {
@@ -98,56 +83,9 @@ public class Candidate { // поля класса
     }
 
     public static void printCandidates() {
-        // ВЫВОД ПОЛУЧЕННОЙ ИНФОРМАЦИИ
         System.out.println("\nХарактеристики кандидатов:");
         for (int i = 0; i < candidates.length; i++) {
             System.out.println(candidates[i]);
-        }
-    }
-
-    public static void checkViolations() {
-        // ПРОВЕРКА НАРУШЕНИЙ В ХОДЕ ВЫБОРОВ
-        int sumVotes = 0;
-        for (int i = 0; i < candidates.length; i++) {
-            sumVotes += candidates[i].getVotes();
-        }
-        System.out.println("\nСумма голосов всех кандидатов = " + sumVotes);
-        System.out.println("Общее количество избирателей = " + totalVoters);
-        if (sumVotes > totalVoters)
-            System.out.println(">>> Обнаружены нарушения в ходе выборов !");
-        else
-            System.out.println(">>> Нарушений не выявлено.");
-    }
-
-    public static void checkRepeatElection() {
-        // ПРОВЕРКА НЕОБХОДИМОСТИ ПОВТОРНЫХ ВЫБОРОВ
-        double threshold = totalVoters / 3.0; // 1/3 от общего количества
-        boolean hasLeader = false;
-        for (int i = 0; i < candidates.length; i++) {
-            if (candidates[i].getVotes() > threshold) {
-                hasLeader = true;
-                break;
-            }
-        }
-        System.out.println("\nПорог для победы (1/3 от " + totalVoters + ") = " + threshold);
-        if (!hasLeader)
-            System.out.println(">>> Требуется проведение повторных выборов !");
-        else
-            System.out.println(">>> Повторные выборы не требуются.");
-    }
-
-    public static void sortByVotesDesc() {
-        // СОРТИРОВКА КАНДИДАТОВ ПО УБЫВАНИЮ ГОЛОСОВ
-        for (int i = 0; i < candidates.length - 1; i++)
-            for (int j = 0; j < candidates.length - 1 - i; j++)
-                if (candidates[j].getVotes() < candidates[j + 1].getVotes()) {
-                    Candidate rab = candidates[j];
-                    candidates[j] = candidates[j + 1];
-                    candidates[j + 1] = rab;
-                }
-        System.out.println("\nОтсортированный список по убыванию голосов:"); //
-        for (int i = 0; i < candidates.length; i++) {
-            System.out.println("" + candidates[i]);
         }
     }
 }

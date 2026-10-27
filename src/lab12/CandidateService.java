@@ -96,5 +96,7 @@ public class CandidateService {
         }
         return false;
     }
-
+    public static int count() {
+        return candidates.length;
+    }
 }

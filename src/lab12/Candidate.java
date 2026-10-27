@@ -10,14 +10,7 @@ public class Candidate {
     private static Candidate[] candidates;
     private static int totalVoters;
 
-    static {
-        candidates = new Candidate[] {
-                new Candidate("Иванов И.И.", "12.05.1980", 120),
-                new Candidate("Петров П.П.", "23.08.1975", 95),
-                new Candidate("Сидоров С.С.", "01.01.1990", 60)
-        };
-        totalVoters = 300;
-    }
+
 
     public Candidate(String surname, String birthDate, int votes) {
         this.surname = surname;
@@ -60,15 +53,6 @@ public class Candidate {
         if (votes < 0) System.out.println("Недопустимое значение !");
         else this.votes = votes;
     }
-
-    public static int getTotalVoters() { return totalVoters; }
-
-    public static void setTotalVoters(int totalVoters) {
-        if (totalVoters <= 0) System.out.println("Недопустимое значение !");
-        else Candidate.totalVoters = totalVoters;
-    }
-    public static Candidate[] getCandidates() { return candidates; }
-    public static void setCandidates(Candidate[] c) { candidates = c; }
 
     public static void fillCandidates() {
         CandidateService.fillCandidates();

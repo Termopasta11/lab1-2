@@ -97,10 +97,13 @@ public class CandidateService {
         }
         return false;
     }
-
+    
     public static Candidate findBySurname(String surname) {
         for (Candidate c : candidates)
             if (c.getSurname().equalsIgnoreCase(surname)) return c;
         return null;
+
+    public static int count() {
+        return candidates.length;
     }
 }

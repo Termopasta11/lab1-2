@@ -71,17 +71,7 @@ public class Candidate {
     public static void setCandidates(Candidate[] c) { candidates = c; }
 
     public static void fillCandidates() {
-        Scanner sc = new Scanner(System.in, "cp1251");
-        System.out.println("Введите общее количество избирателей=> ");
-        totalVoters = sc.nextInt();
-        System.out.println("Введите количество кандидатов=> ");
-        int n = sc.nextInt();
-        candidates = new Candidate[n];
-        System.out.println("Введите информацию о кандидатах: ");
-        for (int i = 0; i < candidates.length; i++) {
-            System.out.println("Кандидат " + (i + 1) + "=>");
-            candidates[i] = new Candidate();
-        }
+        CandidateService.fillCandidates();
     }
 
     public static void printCandidates() {

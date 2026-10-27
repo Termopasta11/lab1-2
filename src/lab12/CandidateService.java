@@ -1,5 +1,5 @@
 package lab12;
-
+import java.util.Scanner;
 public class CandidateService {
     public static void printCandidates() {
         System.out.println("\nХарактеристики кандидатов:");
@@ -41,5 +41,19 @@ public class CandidateService {
                 }
         System.out.println("\nОтсортированный список по убыванию голосов:");
         for (Candidate c : arr) System.out.println(c);
+    }
+    public static void fillCandidates() {
+        Scanner sc = new Scanner(System.in, "cp1251");
+        System.out.println("Введите общее количество избирателей=> ");
+        Candidate.setTotalVoters(sc.nextInt());
+        System.out.println("Введите количество кандидатов=> ");
+        int n = sc.nextInt();
+        Candidate[] arr = new Candidate[n];
+        System.out.println("Введите информацию о кандидатах: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println("Кандидат " + (i + 1) + "=>");
+            arr[i] = new Candidate();
+        }
+        Candidate.setCandidates(arr);
     }
 }

@@ -92,19 +92,7 @@ public class Candidate {
     }
 
     public static void checkRepeatElection() {
-        double threshold = totalVoters / 3.0;
-        boolean hasLeader = false;
-        for (int i = 0; i < candidates.length; i++) {
-            if (candidates[i].getVotes() > threshold) {
-                hasLeader = true;
-                break;
-            }
-        }
-        System.out.println("\nПорог для победы (1/3 от " + totalVoters + ") = " + threshold);
-        if (!hasLeader)
-            System.out.println(">>> Требуется проведение повторных выборов !");
-        else
-            System.out.println(">>> Повторные выборы не требуются.");
+        CandidateService.checkRepeatElection();
     }
     public static void sortByVotesDesc() {
         for (int i = 0; i < candidates.length - 1; i++)

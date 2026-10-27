@@ -95,16 +95,6 @@ public class Candidate {
         CandidateService.checkRepeatElection();
     }
     public static void sortByVotesDesc() {
-        for (int i = 0; i < candidates.length - 1; i++)
-            for (int j = 0; j < candidates.length - 1 - i; j++)
-                if (candidates[j].getVotes() < candidates[j + 1].getVotes()) {
-                    Candidate rab = candidates[j];
-                    candidates[j] = candidates[j + 1];
-                    candidates[j + 1] = rab;
-                }
-        System.out.println("\nОтсортированный список по убыванию голосов:");
-        for (int i = 0; i < candidates.length; i++) {
-            System.out.println("" + candidates[i]);
-        }
+        CandidateService.sortByVotesDesc();
     }
 }

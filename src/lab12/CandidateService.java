@@ -84,5 +84,17 @@ public class CandidateService {
         }
         return null;
     }
+    public static boolean removeBySurname(String surname) {
+        for (int i = 0; i < candidates.length; i++) {
+            if (candidates[i].getSurname().equalsIgnoreCase(surname)) {
+                Candidate[] n = new Candidate[candidates.length - 1];
+                for (int j = 0, k = 0; j < candidates.length; j++)
+                    if (j != i) n[k++] = candidates[j];
+                candidates = n;
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

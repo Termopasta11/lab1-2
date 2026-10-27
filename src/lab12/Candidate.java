@@ -54,21 +54,4 @@ public class Candidate {
         else this.votes = votes;
     }
 
-    public static void fillCandidates() {
-        CandidateService.fillCandidates();
-    }
-
-    public static void printCandidates() {
-        CandidateService.printCandidates();
-    }
-    public static void checkViolations() {
-        CandidateService.checkViolations();
-    }
-
-    public static void checkRepeatElection() {
-        CandidateService.checkRepeatElection();
-    }
-    public static void sortByVotesDesc() {
-        CandidateService.sortByVotesDesc();
-    }
 }

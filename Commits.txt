@@ -1,5 +1,7 @@
-Часть 1. Подключение Git
-Remove-Item -Recurse -Force .git — удалил папку Git с историей проекта, чтобы начать настройку заново.
+                           Часть 1. Подключение Git
++ в IntelliJ Idea при создании нового проекта можно сразу подключить гит нажав на соответсвющий "+" рядом с "добавить гит"
+
+Remove-Item -Recurse -Force .git — удалил папку Git с историей проекта, чтобы начать настройку заново.(в первый раз перепутались файлы)
 git status — проверил состояние проекта до подключения Git.
 VCS → Enable Version Control Integration → Git — подключил систему контроля версий Git в IntelliJ IDEA.
 .gitignore — настроил исключения для служебных файлов IDE и папок сборки.
@@ -7,7 +9,7 @@ git config user.name "Ermakova" — задал имя автора коммит�
 git config user.email "markrmkv@gmail.com" — задал электронную почту автора коммитов.
 git config user.email — проверил установленную электронную почту.
 git branch — проверил текущую ветку Git.
-Часть 2. Четыре коммита с готовым кодом
+                         Часть 2. Четыре коммита 
 git add . — добавил файлы проекта в индекс Git.
 git commit -m "Базовое состояние: проект lab12" — сохранил начальную версию проекта с классами Candidate и Main.
 git add . — подготовил изменения для проверки нарушений на выборах.
@@ -17,7 +19,7 @@ git commit -m "Реализован checkRepeatElection" — сохранил м
 git add . — подготовил изменения сортировки кандидатов.
 git commit -m "Реализован sortByVotesDesc" — сохранил метод сортировки кандидатов по убыванию голосов.
 git log --oneline — просмотрел историю коммитов.
-Часть 3. Рефакторинг
+                                    Часть 3. Рефакторинг
 git checkout -b refactor/extract-candidate-service — создал отдельную ветку для рефакторинга.
 git add . — подготовил новый класс CandidateService.
 git commit -m "refactor: empty CandidateService" — сохранил создание пустого класса сервиса.
@@ -42,7 +44,7 @@ git merge refactor/extract-candidate-service — объединил измене
 git branch -d refactor/extract-candidate-service — удалил завершённую ветку рефакторинга.
 git log --oneline — проверил историю изменений.
 Часть 4. Работа с ветками и конфликтами
-Поиск кандидата
+                             Поиск кандидата
 git checkout -b feature/find-by-name — создал ветку для реализации поиска кандидата по фамилии.
 git add . — подготовил изменения метода findBySurname.
 git commit -m "feature/find-by-name: добавлен поиск кандидата по фамилии" — сохранил реализацию поиска.
@@ -55,7 +57,7 @@ Merge Editor в IntelliJ IDEA — сравнил версии файлов и в
 git add . — добавил разрешённый файл в индекс.
 git commit -m "Merge feature/find-by-name: разрешён конфликт" — сохранил результат разрешения конфликта.
 git branch -d feature/find-by-name — удалил завершённую ветку поиска.
-Удаление кандидата
+                          Удаление кандидата
 git checkout -b feature/remove-by-name — создал ветку для удаления кандидата по фамилии.
 git add . — подготовил метод removeBySurname.
 git commit -m "feature/remove-by-name: добавлено удаление по фамилии" — сохранил реализацию удаления кандидата.
@@ -64,26 +66,35 @@ git merge feature/remove-by-name — объединил изменения уд�
 git branch -d feature/remove-by-name — удалил завершённую ветку.
 Подсчёт кандидатов
 git checkout -b feature/count — создал ветку для подсчёта кандидатов.
-git add . — подготовил метод count.
-git commit -m "feature/count: добавлен подсчёт кандидатов" — сохранил реализацию подсчёта.
-git checkout master — вернулся в основную ветку.
-git merge feature/count — объединил изменения подсчёта с основной веткой.
-git branch -d feature/count — удалил завершённую ветку.
-git log --oneline --graph --all — просмотрел историю коммитов и объединение веток в виде графа.
-git status — проверил текущее состояние репозитория.
-Часть 5. GitHub
-GitHub → New repository — создал удалённый репозиторий lab1-2-candidates.
+git add . — подготовлен метод count.
+git commit -m "feature/count: добавлен подсчёт кандидатов" — сохранилась реализацию подсчёта.
+git checkout master — возвращение в основную ветку.
+git merge feature/count — объединение изменения подсчёта с основной веткой.
+git branch -d feature/count — удаление завершённую ветку.
+git log --oneline --graph --all — просмотрена история коммитов и объединение веток в виде графа.
+git status — проверена текущее состояние репозитория.
+                        Часть 5. GitHub
+GitHub → New repository — создал удалённый репозиторий lab1-2-
 GitHub → Settings → Developer settings → Personal access tokens — создал токен для авторизации.
-git remote add origin https://github.com/Тermopasta11/lab1-2-candidates.git — добавил удалённый репозиторий.
+git remote add origin https://github.com/Тermopasta11/lab1-2.git — добавил удалённый репозиторий.
 git remote -v — проверил адреса удалённого репозитория.
 git push -u origin master — отправил основную ветку и коммиты на GitHub.
-Работа со второго компьютера
-git clone https://github.com/Termopasta11/lab1-2-candidates.git — скопировал удалённый репозиторий на другой компьютер.
-cd lab12-candidates — перешёл в папку проекта.
-git config user.name "Ermakova" — настроил имя автора коммитов.
-git config user.email "muska.ermakova@gmail.com" — настроил электронную почту автора коммитов.
-git add . — подготовил изменения на втором компьютере.
-git commit -m "Изменение со второго компьютера" — сохранил изменения отдельным коммитом.
-git push — отправил изменения на GitHub.
-git pull — загрузил изменения с GitHub на первый компьютер.
-git log --oneline — проверил историю коммитов после синхронизации.
+                 Работа со второго компьютера
+git clone https://github.com/Termopasta11/lab1-2.git — скопирован удалённый репозиторий на другой компьютер.
+( не вышло так что лаб1-2 была скачана как зип файл)
+git init - создает папку git
+git remote add origin https://github.com/Termopasta11/lab1-2.git- привязка к репзиторию куда изменения вносить
+git fetch origin
+git checkout -b master origin/master--скачана история коммитов.
+!!!Ошибка error: Указанные неотслеживаемые файлы... будут перезаписаны!!
+  Решение:git clean -f -d--удаление мешающих файлов
+          git checkout -b master origin/master - переключение на рабочую ветку
+          git status - проверка работоспособности.
+git config user.name "Ermakova" — настройка имя автора коммитов.
+git config user.email "muska.ermakova@gmail.com" — настройка эл почты автора коммитов.
+(логин и токен)
+git add . — подготовлены изменения на втором компьютере.
+git commit -m "Изменение со второго компьютера" — сохранены изменения отдельным коммитом.
+git push — отправлены изменения на GitHub.
+git pull — загружены изменения с GitHub на первый компьютер.
+git log --oneline — проверена история коммитов после синхронизации.

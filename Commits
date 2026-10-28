@@ -1,0 +1,89 @@
+Часть 1. Подключение Git
+Remove-Item -Recurse -Force .git — удалил папку Git с историей проекта, чтобы начать настройку заново.
+git status — проверил состояние проекта до подключения Git.
+VCS → Enable Version Control Integration → Git — подключил систему контроля версий Git в IntelliJ IDEA.
+.gitignore — настроил исключения для служебных файлов IDE и папок сборки.
+git config user.name "Ermakova" — задал имя автора коммитов.
+git config user.email "markrmkv@gmail.com" — задал электронную почту автора коммитов.
+git config user.email — проверил установленную электронную почту.
+git branch — проверил текущую ветку Git.
+Часть 2. Четыре коммита с готовым кодом
+git add . — добавил файлы проекта в индекс Git.
+git commit -m "Базовое состояние: проект lab12" — сохранил начальную версию проекта с классами Candidate и Main.
+git add . — подготовил изменения для проверки нарушений на выборах.
+git commit -m "Реализован checkViolations" — сохранил реализацию проверки общей суммы голосов.
+git add . — добавил изменения для проверки необходимости повторных выборов.
+git commit -m "Реализован checkRepeatElection" — сохранил метод проверки повторных выборов.
+git add . — подготовил изменения сортировки кандидатов.
+git commit -m "Реализован sortByVotesDesc" — сохранил метод сортировки кандидатов по убыванию голосов.
+git log --oneline — просмотрел историю коммитов.
+Часть 3. Рефакторинг
+git checkout -b refactor/extract-candidate-service — создал отдельную ветку для рефакторинга.
+git add . — подготовил новый класс CandidateService.
+git commit -m "refactor: empty CandidateService" — сохранил создание пустого класса сервиса.
+git add . — подготовил перенос метода printCandidates.
+git commit -m "refactor: move printCandidates" — перенёс вывод списка кандидатов в CandidateService.
+git add . — подготовил перенос метода checkViolations.
+git commit -m "refactor: move checkViolations" — перенёс проверку нарушений в сервис.
+git add . — подготовил перенос метода checkRepeatElection.
+git commit -m "refactor: move checkRepeatElection" — перенёс проверку повторных выборов в сервис.
+git add . — подготовил перенос метода sortByVotesDesc.
+git commit -m "refactor: move sortByVotesDesc" — перенёс сортировку кандидатов в сервис.
+git add . — подготовил перенос метода fillCandidates.
+git commit -m "refactor: move fillCandidates" — перенёс заполнение массива кандидатов в сервис.
+git add . — подготовил перенос массива кандидатов и общего количества избирателей.
+git commit -m "refactor: move candidates array" — перенёс хранение массива кандидатов в CandidateService.
+git add . — подготовил изменения в Main.java.
+git commit -m "refactor: switch Main to CandidateService" — переключил меню на вызовы методов CandidateService.
+git add . — подготовил удаление методов-делегатов из Candidate.
+git commit -m "refactor: remove delegates from Candidate" — удалил методы-делегаты, оставив в Candidate поля и методы работы с данными.
+git checkout master — переключился на основную ветку.
+git merge refactor/extract-candidate-service — объединил изменения рефакторинга с основной веткой.
+git branch -d refactor/extract-candidate-service — удалил завершённую ветку рефакторинга.
+git log --oneline — проверил историю изменений.
+Часть 4. Работа с ветками и конфликтами
+Поиск кандидата
+git checkout -b feature/find-by-name — создал ветку для реализации поиска кандидата по фамилии.
+git add . — подготовил изменения метода findBySurname.
+git commit -m "feature/find-by-name: добавлен поиск кандидата по фамилии" — сохранил реализацию поиска.
+Создание и разрешение конфликта
+git checkout master — вернулся в основную ветку.
+git add . — подготовил альтернативную реализацию поиска searchBySurname.
+git commit -m "Добавлен метод searchBySurname (master)" — сохранил изменения в основной ветке.
+git merge feature/find-by-name — объединил ветки и вызвал конфликт изменений.
+Merge Editor в IntelliJ IDEA — сравнил версии файлов и выбрал итоговый вариант разрешения конфликта.
+git add . — добавил разрешённый файл в индекс.
+git commit -m "Merge feature/find-by-name: разрешён конфликт" — сохранил результат разрешения конфликта.
+git branch -d feature/find-by-name — удалил завершённую ветку поиска.
+Удаление кандидата
+git checkout -b feature/remove-by-name — создал ветку для удаления кандидата по фамилии.
+git add . — подготовил метод removeBySurname.
+git commit -m "feature/remove-by-name: добавлено удаление по фамилии" — сохранил реализацию удаления кандидата.
+git checkout master — переключился на основную ветку.
+git merge feature/remove-by-name — объединил изменения удаления с основной веткой.
+git branch -d feature/remove-by-name — удалил завершённую ветку.
+Подсчёт кандидатов
+git checkout -b feature/count — создал ветку для подсчёта кандидатов.
+git add . — подготовил метод count.
+git commit -m "feature/count: добавлен подсчёт кандидатов" — сохранил реализацию подсчёта.
+git checkout master — вернулся в основную ветку.
+git merge feature/count — объединил изменения подсчёта с основной веткой.
+git branch -d feature/count — удалил завершённую ветку.
+git log --oneline --graph --all — просмотрел историю коммитов и объединение веток в виде графа.
+git status — проверил текущее состояние репозитория.
+Часть 5. GitHub
+GitHub → New repository — создал удалённый репозиторий lab1-2-candidates.
+GitHub → Settings → Developer settings → Personal access tokens — создал токен для авторизации.
+git remote add origin https://github.com/Тermopasta11/lab1-2-candidates.git — добавил удалённый репозиторий.
+git remote -v — проверил адреса удалённого репозитория.
+git push -u origin master — отправил основную ветку и коммиты на GitHub.
+Работа со второго компьютера
+git clone https://github.com/Termopasta11/lab1-2-candidates.git — скопировал удалённый репозиторий на другой компьютер.
+cd lab12-candidates — перешёл в папку проекта.
+git config user.name "Ermakova" — настроил имя автора коммитов.
+git config user.email "muska.ermakova@gmail.com" — настроил электронную почту автора коммитов.
+git add . — подготовил изменения на втором компьютере.
+git commit -m "Изменение со второго компьютера" — сохранил изменения отдельным коммитом.
+git push — отправил изменения на GitHub.
+git pull — загрузил изменения с GitHub на первый компьютер.
+git log --oneline — проверил историю коммитов после синхронизации.

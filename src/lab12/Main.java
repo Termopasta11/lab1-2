@@ -11,7 +11,7 @@ public class Main {
             System.out.println("4. Проверить необходимость повторных выборов");
             System.out.println("5. Упорядочить кандидатов по убыванию голосов");
             System.out.println("6. Выход");
-            System.out.println("Выберете пункт меню (1..6)");
+            System.out.println("Выберете пункт меню (1-6)");
             int c = (new Scanner(System.in)).nextInt();
             switch (c) {
                 case 1: CandidateService.fillCandidates(); break;

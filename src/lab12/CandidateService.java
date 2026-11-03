@@ -85,4 +85,9 @@ public class CandidateService {
         return null;
     }
 
+    public static Candidate findBySurname(String surname) {
+        for (Candidate c : candidates)
+            if (c.getSurname().equalsIgnoreCase(surname)) return c;
+        return null;
+    }
 }
